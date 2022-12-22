@@ -4,13 +4,14 @@ import (
 	"go-ecommerce/routes"
 	"os"
 
+	"go-ecommerce/controllers"
 	db "go-ecommerce/database"
-"go-ecommerce/middleware"
-"go-ecommerce/controllers"
+	"go-ecommerce/middleware"
+
 	"github.com/gin-gonic/gin"
 )
 
-func main()  {
+func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8000"
@@ -25,8 +26,7 @@ func main()  {
 	router.Use(middleware.Authentication())
 
 	router.GET("/addtocart", app.AddToCart())
-		router.GET("/removeitem", app.RemoveItem())
+	router.GET("/removeitem", app.RemoveItem())
 	router.GET("/cartcheckout", app.BuyFromCart())
 	router.GET("/instantbuy", app.InstantBuy())
-
 }
